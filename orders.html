@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+
+<title>الطلبات</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+.card{
+background:#222;
+margin:15px;
+padding:20px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>طلبات الموقع</h1>
+
+<div id="orders"></div>
+
+<script>
+
+let orders=JSON.parse(localStorage.getItem("orders")) || [];
+
+let html="";
+
+orders.forEach(order=>{
+
+html+=`
+<div class="card">
+<p>الاسم: ${order.name}</p>
+<p>الهاتف: ${order.phone}</p>
+<p>المحافظة: ${order.city}</p>
+<p>العنوان: ${order.address}</p>
+<p>الكمية: ${order.quantity}</p>
+</div>
+`;
+
+});
+
+document.getElementById("orders").innerHTML=html;
+
+</script>
+
+</body>
+</html>

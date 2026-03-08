@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOVAL Store</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+margin:0;
+}
+
+nav{
+background:black;
+padding:15px;
+font-size:22px;
+color:#00ff99;
+}
+
+.img1{
+    width: 150px;
+    height: 70px;
+    border: none;
+    border-radius: 20px;
+}
+
+.hero{
+padding:40px;
+}
+
+.hero img{
+width:260px;
+border-radius:10px;
+}
+
+.price{
+font-size:30px;
+color:#00ff99;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+}
+
+.stock{
+color:red;
+margin:10px;
+}
+
+.timer{
+font-size:22px;
+color:#ff4444;
+}
+
+button{
+padding:15px 30px;
+background:#00ff99;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+.buy-fixed{
+position:fixed;
+bottom:20px;
+right: 20px;
+width: 200px;
+height: 60px;
+border-radius: 50%;
+background:#00ff99;
+padding: 0;
+font-size: 14px;
+border: none;
+}
+
+form{
+display:none;
+margin-top:20px;
+}
+
+input,select{
+padding:12px;
+width:260px;
+margin:10px;
+border:none;
+border-radius:6px;
+}
+
+.popup{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#222;
+padding:10px 15px;
+border-radius:8px;
+display:none;
+}
+
+.review{
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<img src="WhatsApp Image 2026-03-05 at 12.52.09 AM.jpeg" alt="" class="img1">
+</nav>
+
+<div class="hero">
+
+<img src="https://m.media-amazon.com/images/I/51MM182cglL.jpg">
+
+<h1>لمبة LED بحساس حركة</h1>
+
+<div class="price">
+449ج
+<span class="old">799ج</span>
+</div>
+
+
+<div class="timer" id="timer"></div>
+
+<br>
+
+<button onclick="showForm()">اطلب الآن</button>
+
+</div>
+
+<form id="orderForm">
+
+<input type="text" id="name" placeholder="الاسم بالكامل" required><br>
+
+<input type="text" id="phone" placeholder="رقم الهاتف" required><br>
+
+<select id="city">
+<option>القاهرة</option>
+<option>الجيزة</option>
+<option>الإسكندرية</option>
+<option>الدقهلية</option>
+<option>الشرقية</option>
+<option>الغربية</option>
+<option>المنوفية</option>
+<option>القليوبية</option>
+</select><br>
+
+<input type="text" id="address" placeholder="العنوان بالتفصيل" required><br>
+
+<input type="number" id="quantity" value="1" placeholder="الكمية"><br>
+
+<button type="button" onclick="saveOrder()">تأكيد الطلب</button>
+
+</form>
+
+<div class="review">
+
+<h2>آراء العملاء</h2>
+
+<p>⭐⭐⭐⭐⭐ المنتج ممتاز - أحمد من القاهرة</p>
+<p>⭐⭐⭐⭐⭐ مفيد جداً للمطبخ - كريم من الجيزة</p>
+<p>⭐⭐⭐⭐ جودة ممتازة - علي من الإسكندرية</p>
+
+</div>
+
+<div class="popup" id="popup"></div>
+
+<button class="buy-fixed" onclick="showForm()">اطلب الآن</button>
+
+<script>
+
+function showForm(){
+document.getElementById("orderForm").style.display="block";
+}
+
+function saveOrder(){
+
+ let name=document.getElementById("name").value;
+    let phone=document.getElementById("phone").value;
+    let city=document.getElementById("city").value;
+    let address=document.getElementById("address").value;
+    let quantity=document.getElementById("quantity").value;
+
+    let orders=JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push({name, phone, city, address, quantity});
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    // إرسال البيانات على واتساب
+    let message = `طلب جديد:
+الاسم: ${name}
+الهاتف: ${phone}
+المحافظة: ${city}
+العنوان: ${address}
+الكمية: ${quantity}`;
+    let whatsappURL = "https://wa.me/01094492277?text=" + encodeURIComponent(message);
+    window.open(whatsappURL, "_blank");
+
+    // تحويل العميل لصفحة النجاح
+    window.location.href="thanks.html";
+
+}
+
+let time=3600;
+
+setInterval(function(){
+
+let m=Math.floor(time/60);
+let s=time%60;
+
+document.getElementById("timer").innerHTML=
+"العرض ينتهي خلال "+m+":"+s;
+
+time--;
+
+},1000);
+
+let names=["محمد","أحمد","كريم","علي","يوسف"];
+
+setInterval(function(){
+
+let name=names[Math.floor(Math.random()*names.length)];
+
+let popup=document.getElementById("popup");
+
+popup.innerHTML=name+" من القاهرة طلب المنتج";
+
+popup.style.display="block";
+
+setTimeout(()=>{
+popup.style.display="none";
+},3000);
+
+},8000);
+
+</script>
+
+</body>
+</html>
