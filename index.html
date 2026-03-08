@@ -1,249 +1,136 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NOVAL Store</title>
-
+<title>Smart LED Motion Lamp</title>
 <style>
-
-body{
-font-family:Arial;
-background:#111;
-color:white;
-text-align:center;
-margin:0;
-}
-
-nav{
-background:black;
-padding:15px;
-font-size:22px;
-color:#00ff99;
-}
-
-.img1{
-    width: 150px;
-    height: 70px;
-    border: none;
-    border-radius: 20px;
-}
-
-.hero{
-padding:40px;
-}
-
-.hero img{
-width:260px;
-border-radius:10px;
-}
-
-.price{
-font-size:30px;
-color:#00ff99;
-}
-
-.old{
-text-decoration:line-through;
-color:gray;
-}
-
-.stock{
-color:red;
-margin:10px;
-}
-
-.timer{
-font-size:22px;
-color:#ff4444;
-}
-
-button{
-padding:15px 30px;
-background:#00ff99;
-border:none;
-border-radius:8px;
-font-size:18px;
-cursor:pointer;
-}
-
-.buy-fixed{
-position:fixed;
-bottom:20px;
-right: 20px;
-width: 200px;
-height: 60px;
-border-radius: 50%;
-background:#00ff99;
-padding: 0;
-font-size: 14px;
-border: none;
-}
-
-form{
-display:none;
-margin-top:20px;
-}
-
-input,select{
-padding:12px;
-width:260px;
-margin:10px;
-border:none;
-border-radius:6px;
-}
-
-.popup{
-position:fixed;
-bottom:20px;
-left:20px;
-background:#222;
-padding:10px 15px;
-border-radius:8px;
-display:none;
-}
-
-.review{
-margin-top:40px;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family: 'Segoe UI', sans-serif; background:#0e0e0e; color:white; direction:rtl;}
+nav{display:flex; justify-content:space-between; padding:20px; background:black; position:sticky; top:0;}
+nav h2{color:#00ff99;}
+nav a{color:white; text-decoration:none; margin-left:15px;}
+.hero{text-align:center; padding:50px 20px;}
+.hero h1{font-size:32px; margin:15px 0;}
+.hero p{color:#aaa; font-size:18px;}
+.hero img{width:60%; border-radius:12px; margin-bottom:15px;}
+.price{color:#00ff99; font-size:28px; margin:15px 0;}
+.stock{color:red; font-weight:bold;}
+button{padding:15px 35px; border:none; border-radius:8px; background:#00ff99; color:black; font-size:18px; cursor:pointer; transition:.3s;}
+button:hover{transform:scale(1.05);}
+.section{padding:50px 20px; text-align:center;}
+.features{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; margin-top:30px;}
+.card{background:#1a1a1a; padding:20px; border-radius:12px; transition:.3s;}
+.card:hover{transform:translateY(-10px); background:#222;}
+.card img{width:100%; border-radius:10px; margin-bottom:10px;}
+form{max-width:400px; margin:30px auto; display:none;}
+input{width:100%; padding:12px; margin-bottom:15px; border-radius:6px; border:none;}
+footer{background:black; padding:20px; text-align:center; margin-top:40px; color:#888;}
 </style>
-
 </head>
-
 <body>
 
 <nav>
-<img src="WhatsApp Image 2026-03-05 at 12.52.09 AM.jpeg" alt="" class="img1">
+<img src="picture/WhatsApp Image 2026-03-05 at 12.52.09 AM.jpeg" alt="" style="width: 200px; height: 100px; border: none; border-radius: 20px;">
+<div>
+<a href="#">الرئيسية</a>
+<a href="#">المميزات</a>
+<a href="#">تواصل</a>
+</div>
 </nav>
 
 <div class="hero">
-
-<img src="https://m.media-amazon.com/images/I/51MM182cglL.jpg">
-
-<h1>لمبة LED بحساس حركة</h1>
-
-<div class="price">
-449ج
-<span class="old">799ج</span>
-</div>
-
-
-<div class="timer" id="timer"></div>
-
+<img src="picture/WhatsApp Image 2026-03-08 at 8.45.52 PM.jpeg" alt="لمبة LED ذكية">
+<h1>إضاءة ذكية بحساس حركة</h1>
+<p>تنور تلقائيًا وتطفي لوحدها 👌</p>
+<div class="price">449ج بدل 799ج</div>
+<div class="stock" id="stock">اطلب الان قبل انتهاء الكمية 🔥</div>
 <br>
-
 <button onclick="showForm()">اطلب الآن</button>
-
 </div>
+
+<div class="section">
+<h2>المميزات</h2>
+<div class="features">
+<div class="card">
+<img src="picture/WhatsApp Image 2026-02-27 at 1.23.33 AM.jpeg" alt="لمبة LED">
+<h3>حساس حركة دقيق</h3>
+<p>يكتشف الحركة في الظلام فورًا</p>
+</div>
+<div class="card">
+<img src="picture/WhatsApp Image 2026-02-27 at 1.05.00 AM.jpeg" alt="لمبة LED">
+<h3>توفير كهرباء</h3>
+<p>تقلل الاستهلاك بنسبة كبيرة</p>
+</div>
+<div class="card">
+<img src="picture/WhatsApp Image 2026-02-27 at 1.23.34 AM.jpeg" alt="لمبة LED">
+<h3>تركيب سهل</h3>
+<p>بدون فني أو أدوات</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<button onclick="showForm()">اطلب قبل انتهاء الكمية</button>
+<br><br>
+<h2>للتواصل عبر واتساب 01094492277</h2>
 
 <form id="orderForm">
-
-<input type="text" id="name" placeholder="الاسم بالكامل" required><br>
-
-<input type="text" id="phone" placeholder="رقم الهاتف" required><br>
-
-<select id="city">
-<option>القاهرة</option>
-<option>الجيزة</option>
-<option>الإسكندرية</option>
-<option>الدقهلية</option>
-<option>الشرقية</option>
-<option>الغربية</option>
-<option>المنوفية</option>
-<option>القليوبية</option>
-</select><br>
-
-<input type="text" id="address" placeholder="العنوان بالتفصيل" required><br>
-
-<input type="number" id="quantity" value="1" placeholder="الكمية"><br>
-
-<button type="button" onclick="saveOrder()">تأكيد الطلب</button>
-
+<input type="text" id="name" placeholder="الاسم بالكامل" required>
+<input type="text" id="phone" placeholder="رقم الهاتف" required>
+<input type="text" id="city" placeholder="المحافظة" required>
+<input type="text" id="address" placeholder="العنوان بالكامل" required>
+<input type="number" id="quantity" placeholder="الكمية" required>
+<button type="button" onclick="submitOrder()">تأكيد الطلب</button>
 </form>
-
-<div class="review">
-
-<h2>آراء العملاء</h2>
-
-<p>⭐⭐⭐⭐⭐ المنتج ممتاز - أحمد من القاهرة</p>
-<p>⭐⭐⭐⭐⭐ مفيد جداً للمطبخ - كريم من الجيزة</p>
-<p>⭐⭐⭐⭐ جودة ممتازة - علي من الإسكندرية</p>
-
 </div>
 
-<div class="popup" id="popup"></div>
-
-<button class="buy-fixed" onclick="showForm()">اطلب الآن</button>
+<footer>
+© 2026 Smart LED - جميع الحقوق محفوظة
+</footer>
 
 <script>
+let stock = 12;
 
 function showForm(){
-document.getElementById("orderForm").style.display="block";
+    document.getElementById("orderForm").style.display="block";
 }
 
-function saveOrder(){
+function submitOrder(){
+    let name = document.getElementById("name").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let city = document.getElementById("city").value.trim();
+    let address = document.getElementById("address").value.trim();
+    let quantity = document.getElementById("quantity").value.trim();
 
- let name=document.getElementById("name").value;
-    let phone=document.getElementById("phone").value;
-    let city=document.getElementById("city").value;
-    let address=document.getElementById("address").value;
-    let quantity=document.getElementById("quantity").value;
+    if(!name || !phone || !city || !address || !quantity){
+        alert("يرجى ملء جميع الحقول!");
+        return;
+    }
 
-    let orders=JSON.parse(localStorage.getItem("orders")) || [];
+    // حفظ الطلب في localStorage
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
     orders.push({name, phone, city, address, quantity});
     localStorage.setItem("orders", JSON.stringify(orders));
 
-    // إرسال البيانات على واتساب
+    // تحديث المخزون
+    stock -= parseInt(quantity);
+    if(stock < 0) stock = 0;
+    document.getElementById("stock").innerText = "باقي " + stock + " قطعة فقط 🔥";
+
+    // فتح واتساب برسالة الطلب (رقم مصر +20 بدون صفر أولي)
+    let whatsappURL = "https://wa.me/201094492277?text=";
     let message = `طلب جديد:
 الاسم: ${name}
 الهاتف: ${phone}
 المحافظة: ${city}
 العنوان: ${address}
 الكمية: ${quantity}`;
-    let whatsappURL = "https://wa.me/20109492277?text=" + encodeURIComponent(message);
-    window.open(whatsappURL, "_blank");
+    window.open(whatsappURL + encodeURIComponent(message), "_blank");
 
-    // تحويل العميل لصفحة النجاح
-    window.location.href="thanks.html";
-
+    // تحويل لصفحة النجاح
+    window.location.href = "thanks.html";
 }
-
-let time=3600;
-
-setInterval(function(){
-
-let m=Math.floor(time/60);
-let s=time%60;
-
-document.getElementById("timer").innerHTML=
-"العرض ينتهي خلال "+m+":"+s;
-
-time--;
-
-},1000);
-
-let names=["محمد","أحمد","كريم","علي","يوسف"];
-
-setInterval(function(){
-
-let name=names[Math.floor(Math.random()*names.length)];
-
-let popup=document.getElementById("popup");
-
-popup.innerHTML=name+" من القاهرة طلب المنتج";
-
-popup.style.display="block";
-
-setTimeout(()=>{
-popup.style.display="none";
-},3000);
-
-},8000);
-
 </script>
-
 </body>
 </html>

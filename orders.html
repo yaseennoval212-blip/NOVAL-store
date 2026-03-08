@@ -1,60 +1,46 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-
 <meta charset="UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الطلبات</title>
-
 <style>
-
-body{
-background:#111;
-color:white;
-font-family:Arial;
-text-align:center;
-}
-
-.card{
-background:#222;
-margin:15px;
-padding:20px;
-border-radius:10px;
-}
-
+body{font-family:'Segoe UI',sans-serif;padding:20px;background:#0e0e0e;color:white;}
+h1{color:#00ff99;text-align:center;}
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+th,td{border:1px solid #555;padding:10px;text-align:center;}
+th{background:#222;}
+td{background:#1a1a1a;}
 </style>
-
 </head>
-
 <body>
-
-<h1>طلبات الموقع</h1>
-
-<div id="orders"></div>
+<h1>الطلبات الحالية</h1>
+<table>
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الهاتف</th>
+<th>المحافظة</th>
+<th>العنوان</th>
+<th>الكمية</th>
+</tr>
+</thead>
+<tbody id="ordersTable"></tbody>
+</table>
 
 <script>
-
-let orders=JSON.parse(localStorage.getItem("orders")) || [];
-
-let html="";
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let tbody = document.getElementById("ordersTable");
 
 orders.forEach(order=>{
-
-html+=`
-<div class="card">
-<p>الاسم: ${order.name}</p>
-<p>الهاتف: ${order.phone}</p>
-<p>المحافظة: ${order.city}</p>
-<p>العنوان: ${order.address}</p>
-<p>الكمية: ${order.quantity}</p>
-</div>
-`;
-
+    let row = document.createElement("tr");
+    row.innerHTML = `<td>${order.name}</td>
+                     <td>${order.phone}</td>
+                     <td>${order.city}</td>
+                     <td>${order.address}</td>
+                     <td>${order.quantity}</td>`;
+    tbody.appendChild(row);
 });
-
-document.getElementById("orders").innerHTML=html;
-
 </script>
-
 </body>
 </html>
