@@ -100,6 +100,14 @@
         <input class="form-control" type="number" id="phone" placeholder="رقم الهاتف">
       </div>
 
+      <div class="mb-3">
+        <input class="form-control" id="street" placeholder="اسم الشارع">
+      </div>
+
+      <div class="mb-3">
+        <input class="form-control" id="quantity" type="number" placeholder="الكمية">
+      </div>
+
       <button type="button" onclick="saveOrder()" class="btn btn-primary">طلب المنتج</button> 
     </form>       
   </div>
@@ -107,14 +115,16 @@
 </div>
 
 <script>
-function saveOrder(){
+function saveOrder() {
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
   let address = document.getElementById("address").value;
+  let street = document.getElementById("street").value;
+  let quantity = document.getElementById("quantity").value;
 
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  orders.push({ name, phone, address });
+  orders.push({ name, phone, address, street, quantity });
 
   localStorage.setItem("orders", JSON.stringify(orders));
 
@@ -122,7 +132,9 @@ function saveOrder(){
     "طلب جديد 🔥%0A" +
     "الاسم: " + name + "%0A" +
     "الهاتف: " + phone + "%0A" +
-    "العنوان: " + address;
+    "العنوان: " + address + "%0A" +
+    "الشارع: " + street + "%0A" +
+    "الكمية: " + quantity;
 
   let number = "201094492277";
   window.open("https://wa.me/" + number + "?text=" + message);
